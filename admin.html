@@ -1,5 +1,86 @@
 <!DOCTYPE html>
+<html lang="kn"><!DOCTYPE html>
 <html lang="kn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Xyclone Esports</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: #121212; color: #fff; }
+        .container { max-width: 500px; margin: auto; background: #1e1e1e; padding: 20px; border-radius: 8px; }
+        input, button { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none; box-sizing: border-box; }
+        button { background-color: #ff4757; color: white; font-weight: bold; cursor: pointer; }
+        button:hover { background-color: #e84118; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Xyclone Esports - Admin Panel</h2>
+        <label>Tournament Name:</label>
+        <input type="text" id="tName">
+        
+        <label>Entry Fee:</label>
+        <input type="text" id="fee">
+        
+        <label>Prize Pool:</label>
+        <input type="text" id="prize">
+        
+        <label>Poster Image Name (e.g. 1770342644339.jpg):</label>
+        <input type="text" id="poster">
+        
+        <button onclick="updateData()">Save & Update Globally</button>
+        <p id="status"></p>
+    </div>
+
+    <script>
+        const BIN_ID = "6aae4278ffd5d1605318a997";
+        const API_KEY = "$2a$10$ltW6u9G6gqZAFPD5m74pF.W4mX9CuMoVQrFwXDxyM16ddtGtXU6ZG";
+
+        async function loadData() {
+            try {
+                let res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+                    headers: { "X-Master-Key": API_KEY }
+                });
+                let data = await res.json();
+                document.getElementById("tName").value = data.record.tournamentName || "";
+                document.getElementById("fee").value = data.record.entryFee || "";
+                document.getElementById("prize").value = data.record.prizePool || "";
+                document.getElementById("poster").value = data.record.poster || "";
+            } catch (e) {
+                console.log("Error loading data", e);
+            }
+        }
+
+        async function updateData() {
+            document.getElementById("status").innerText = "Saving...";
+            let updatedData = {
+                tournamentName: document.getElementById("tName").value,
+                entryFee: document.getElementById("fee").value,
+                prizePool: document.getElementById("prize").value,
+                poster: document.getElementById("poster").value
+            };
+
+            let res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-Master-Key": API_KEY
+                },
+                body: JSON.stringify(updatedData)
+            });
+
+            if (res.ok) {
+                document.getElementById("status").innerText = "Updated Successfully!";
+            } else {
+                document.getElementById("status").innerText = "Error updating data!";
+            }
+        }
+
+        loadData();
+    </script>
+</body>
+</html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
