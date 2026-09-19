@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xyclone777 Esports | Admin Live Control</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #0d0d0d; color: #ffffff; line-height: 1.6; padding-bottom: 40px; }
+        header { background: linear-gradient(180deg, #1a0000 0%, #0d0d0d 100%); text-align: center; padding: 20px 10px; border-bottom: 2px solid #ff3333; }
+        .logo-container img { width: 140px; height: auto; filter: drop-shadow(0 0 10px #ff0000); }
+        h1 { font-size: 2rem; color: #ff3333; text-transform: uppercase; letter-spacing: 2px; margin-top: 10px; text-shadow: 0 0 10px #ff0000; }
+        p.subtitle { color: #00ff66; font-weight: bold; font-size: 1rem; }
+        .hero-banner { width: 100%; max-width: 900px; margin: 20px auto; padding: 0 15px; }
+        .hero-banner img { width: 100%; border-radius: 12px; border: 2px solid #ff3333; box-shadow: 0 0 20px rgba(255, 0, 0, 0.4); }
+        .main-container { max-width: 900px; margin: 0 auto; padding: 20px 15px; display: flex; flex-direction: column; gap: 30px; }
+        .card { background: #141414; border: 1px solid #ff3333; border-radius: 12px; padding: 20px; box-shadow: 0 4px 15px rgba(255,0,0,0.2); position: relative; }
+        .card-header-img { width: 100%; border-radius: 8px; margin-bottom: 15px; border: 1px solid #ff3333; }
+        
+        .section-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #00ff66; padding-bottom: 8px; margin-bottom: 15px; }
+        .section-header h2 { color: #ff3333; font-size: 1.4rem; display: flex; align-items: center; gap: 8px; }
+        .edit-btn { background: #ff3333; color: white; border: none; padding: 8px 16px; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 0.9rem; box-shadow: 0 0 10px rgba(255,51,51,0.6); }
+
+        .details-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 15px; }
+        .detail-item { background: #1f1f1f; padding: 12px; border-radius: 8px; text-align: center; border-left: 4px solid #ff3333; }
+        .detail-item span { display: block; font-size: 0.85rem; color: #aaa; }
+        .detail-item strong { font-size: 1.1rem; color: #fff; }
+
+        /* Registration Form Styling */
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; color: #00ff66; font-weight: bold; margin-bottom: 5px; }
+        .form-group input { width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: #fff; border-radius: 6px; font-size: 1rem; }
+        .form-group input:focus { border-color: #ff3333; outline: none; }
+        .submit-btn { width: 100%; padding: 14px; background: linear-gradient(90deg, #ff0000, #ff6600); color: #fff; font-weight: bold; font-size: 1.1rem; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 0 15px rgba(255, 0, 0, 0.6); margin-top: 10px; text-transform: uppercase; }
+
+        /* Footer Section Styling */
+        footer { margin-top: 40px; text-align: center; padding: 25px 15px; background: #0d0d0d; border-top: 2px solid #ff3333; }
+        .footer-logo { width: 180px; height: auto; border-radius: 10px; margin-bottom: 15px; }
+        .footer-text { color: #ffffff; font-size: 1.1rem; font-weight: bold; margin-bottom: 8px; }
+        .footer-insta { color: #00ff66; font-size: 1.05rem; font-weight: bold; text-decoration: none; }
+
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; padding: 15px; }
+        .modal-content { background: #1a1a1a; border: 2px solid #ff3333; padding: 20px; border-radius: 12px; width: 100%; max-width: 500px; box-shadow: 0 0 20px #ff3333; }
+        .modal-content h3 { color: #00ff66; margin-bottom: 15px; text-align: center; }
+        .modal-content label { display: block; margin-top: 10px; color: #ff3333; font-weight: bold; font-size: 0.9rem; }
+        .modal-content input, .modal-content textarea { width: 100%; padding: 10px; margin-top: 5px; background: #000; border: 1px solid #444; color: #fff; border-radius: 6px; }
+        .modal-content textarea { height: 130px; resize: vertical; }
+        .modal-actions { display: flex; gap: 10px; margin-top: 20px; }
+        .btn-save { flex: 1; background: #25d366; color: #000; border: none; padding: 10px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+        .btn-close { flex: 1; background: #ff3333; color: white; border: none; padding: 10px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="1784526675116.png" alt="Xyclone777 Esports Logo">
+        </div>
+        <h1>XYCLONE⁷⁷⁷ ESPORTS</h1>
+        <p class="subtitle">👑 ADMIN CONTROL PANEL 👑</p>
+    </header>
+
+    <div class="hero-banner">
+        <img src="IMG_20260810_040025.png" alt="BG Official Banner">
+    </div>
+
+    <div class="main-container">
+
+        <!-- Match Overview Section -->
+        <div class="card">
+            <img id="matchImg" src="IMG_20260814_193406.png" alt="Match Details Poster" class="card-header-img">
+            <div class="section-header">
+                <h2>🏆 Match Overview</h2>
+                <button class="edit-btn" onclick="openMatchModal()">Edit ✏️</button>
+            </div>
+            <div class="details-grid">
+                <div class="detail-item">
+                    <span>Entry Fee</span>
+                    <strong id="feeTxt">₹30 Solo / ₹50 Duo</strong>
+                </div>
+                <div class="detail-item">
+                    <span>1st Prize</span>
+                    <strong id="prize1Txt">₹ 199 🏆</strong>
+                </div>
+                <div class="detail-item">
+                    <span>2nd Prize</span>
+                    <strong id="prize2Txt">₹ 120 🏆</strong>
+                </div>
+                <div class="detail-item">
+                    <span>Mode & Map</span>
+                    <strong id="modeTxt">Duo / Bermuda</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Official Tournament Rules Section -->
+        <div class="card">
+            <img id="rulesImg" src="1784525629128.png" alt="Rules Poster" class="card-header-img">
+            <div class="section-header">
+                <h2>📜 Official Tournament Rules</h2>
+                <button class="edit-btn" onclick="openRulesModal()">Edit ✏️</button>
+            </div>
+            <p id="rulesTxt" style="color: #ccc; margin-top: 10px; white-space: pre-line;">
+                • Weapons Allowed: M1887 & Desert Eagle Only
+                • Combat Rule: Only Headshot Kills Counted
+                • Play Style: No Double Shot & No Spraying
+                • Character Skills: Disabled (Not Allowed)
+                • Match Mechanics: No Revival & No Team-Up
+                • ⚠️ FIRST PAY, THEN PLAY!
+            </p>
+        </div>
+
+        <!-- Registration Form Section -->
+        <div class="card">
+            <div class="section-header" style="border-bottom: none;">
+                <h2>📝 Tournament Registration</h2>
+            </div>
+            <div class="form-group">
+                <label>Free Fire IGN (In-Game Name):</label>
+                <input type="text" placeholder="Ex: _XYCLONE777">
+            </div>
+            <div class="form-group">
+                <label>Free Fire UID:</label>
+                <input type="text" placeholder="Ex: 1234567890">
+            </div>
+            <div class="form-group">
+                <label>WhatsApp Number:</label>
+                <input type="text" placeholder="Ex: 8951630221">
+            </div>
+            <div class="form-group">
+                <label>Transaction UTR / Reference No (Paid match ge):</label>
+                <input type="text" placeholder="Enter UPI Transaction ID">
+            </div>
+            <button class="submit-btn">REGISTER VIA WHATSAPP 🚀</button>
+        </div>
+
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <img src="1770342644339.jpg" alt="BG Official Logo" class="footer-logo">
+        <div class="footer-text">Managed & Designed by BG OFFICIAL</div>
+        <div>Instagram: <a href="https://instagram.com/mr_bhavith_gowda_445" class="footer-insta" target="_blank">@mr_bhavith_gowda_445</a></div>
+    </footer>
+
+    <!-- Match Edit Modal Box -->
+    <div id="matchModal" class="modal">
+        <div class="modal-content">
+            <h3>✏️ Edit Match Details & Poster</h3>
+            <label>1. Match Poster Image Name/URL:</label>
+            <input type="text" id="inMatchImg">
+            <label>2. Entry Fee:</label>
+            <input type="text" id="inFee">
+            <label>3. 1st Prize:</label>
+            <input type="text" id="inPrize1">
+            <label>4. 2nd Prize:</label>
+            <input type="text" id="inPrize2">
+            <label>5. Mode & Map:</label>
+            <input type="text" id="inMode">
+            <div class="modal-actions">
+                <button class="btn-save" onclick="saveMatchModal()">Save Changes 💾</button>
+                <button class="btn-close" onclick="closeModal('matchModal')">Cancel ✖</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rules Edit Modal Box -->
+    <div id="rulesModal" class="modal">
+        <div class="modal-content">
+            <h3>✏️ Edit Rules & Rules Poster</h3>
+            <label>1. Rules Poster Image Name/URL:</label>
+            <input type="text" id="inRulesImg">
+            <label>2. Tournament Rules Text:</label>
+            <textarea id="inRulesTxt"></textarea>
+            <div class="modal-actions">
+                <button class="btn-save" onclick="saveRulesModal()">Save Changes 💾</button>
+                <button class="btn-close" onclick="closeModal('rulesModal')">Cancel ✖</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            if(localStorage.getItem('matchPoster')) document.getElementById('matchImg').src = localStorage.getItem('matchPoster');
+            if(localStorage.getItem('entryFee')) document.getElementById('feeTxt').innerText = localStorage.getItem('entryFee');
+            if(localStorage.getItem('prize1')) document.getElementById('prize1Txt').innerText = localStorage.getItem('prize1');
+            if(localStorage.getItem('prize2')) document.getElementById('prize2Txt').innerText = localStorage.getItem('prize2');
+            if(localStorage.getItem('modeMap')) document.getElementById('modeTxt').innerText = localStorage.getItem('modeMap');
+            
+            if(localStorage.getItem('rulesPoster')) document.getElementById('rulesImg').src = localStorage.getItem('rulesPoster');
+            if(localStorage.getItem('matchRules')) document.getElementById('rulesTxt').innerText = localStorage.getItem('matchRules');
+        }
+
+        function openMatchModal() {
+            document.getElementById('inMatchImg').value = document.getElementById('matchImg').getAttribute('src');
+            document.getElementById('inFee').value = document.getElementById('feeTxt').innerText;
+            document.getElementById('inPrize1').value = document.getElementById('prize1Txt').innerText;
+            document.getElementById('inPrize2').value = document.getElementById('prize2Txt').innerText;
+            document.getElementById('inMode').value = document.getElementById('modeTxt').innerText;
+            document.getElementById('matchModal').style.display = 'flex';
+        }
+
+        function openRulesModal() {
+            document.getElementById('inRulesImg').value = document.getElementById('rulesImg').getAttribute('src');
+            document.getElementById('inRulesTxt').value = document.getElementById('rulesTxt').innerText;
+            document.getElementById('rulesModal').style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function saveMatchModal() {
+            let img = document.getElementById('inMatchImg').value;
+            let fee = document.getElementById('inFee').value;
+            let p1 = document.getElementById('inPrize1').value;
+            let p2 = document.getElementById('inPrize2').value;
+            let mode = document.getElementById('inMode').value;
+
+            if(img) { localStorage.setItem('matchPoster', img); document.getElementById('matchImg').src = img; }
+            if(fee) { localStorage.setItem('entryFee', fee); document.getElementById('feeTxt').innerText = fee; }
+            if(p1) { localStorage.setItem('prize1', p1); document.getElementById('prize1Txt').innerText = p1; }
+            if(p2) { localStorage.setItem('prize2', p2); document.getElementById('prize2Txt').innerText = p2; }
+            if(mode) { localStorage.setItem('modeMap', mode); document.getElementById('modeTxt').innerText = mode; }
+
+            closeModal('matchModal');
+            alert('Match poster and details updated! ✅');
+        }
+
+        function saveRulesModal() {
+            let img = document.getElementById('inRulesImg').value;
+            let rules = document.getElementById('inRulesTxt').value;
+
+            if(img) { localStorage.setItem('rulesPoster', img); document.getElementById('rulesImg').src = img; }
+            if(rules) { localStorage.setItem('matchRules', rules); document.getElementById('rulesTxt').innerText = rules; }
+
+            closeModal('rulesModal');
+            alert('Rules poster and text updated! ✅');
+        }
+    </script>
+</body>
+</html>
