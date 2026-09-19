@@ -3,44 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xyclone Esports</title>
+    <title>Xyclone777 Esports | Free Fire Tournament</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; background-color: #0f0f0f; color: #fff; padding: 20px; }
-        .card { background: #1a1a1a; padding: 20px; border-radius: 10px; max-width: 400px; margin: auto; }
-        img { width: 100%; border-radius: 8px; margin-bottom: 15px; }
-        h1 { color: #ff4757; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #0d0d0d; color: #ffffff; line-height: 1.6; padding-bottom: 40px; }
+        header { background: linear-gradient(180deg, #1a0000 0%, #0d0d0d 100%); text-align: center; padding: 20px 10px; border-bottom: 2px solid #ff3333; }
+        .logo-container img { width: 140px; height: auto; filter: drop-shadow(0 0 10px #ff0000); }
+        h1 { font-size: 2rem; color: #ff3333; text-transform: uppercase; letter-spacing: 2px; margin-top: 10px; text-shadow: 0 0 10px #ff0000; }
+        p.subtitle { color: #00ff66; font-weight: bold; font-size: 1rem; }
+        
+        .hero-banner { width: 100%; max-width: 900px; margin: 20px auto; padding: 0 15px; }
+        .hero-banner img { width: 100%; border-radius: 12px; border: 2px solid #ff3333; box-shadow: 0 0 20px rgba(255, 0, 0, 0.4); }
+        
+        /* Join Group Button */
+        .join-card { max-width: 900px; margin: 0 auto 20px auto; padding: 0 15px; }
+        .group-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 15px; background: #25d366; color: #000; font-weight: bold; font-size: 1.2rem; border-radius: 10px; text-decoration: none; text-transform: uppercase; box-shadow: 0 0 15px rgba(37, 211, 102, 0.6); }
+
+        .main-container { max-width: 900px; margin: 0 auto; padding: 0 15px; display: flex; flex-direction: column; gap: 30px; }
+        .card { background: #141414; border: 1px solid #ff3333; border-radius: 12px; padding: 20px; box-shadow: 0 4px 15px rgba(255,0,0,0.2); }
+        .card-header-img { width: 100%; border-radius: 8px; margin-bottom: 15px; border: 1px solid #ff3333; }
+        .section-header { border-bottom: 2px solid #00ff66; padding-bottom: 8px; margin-bottom: 15px; }
+        .section-header h2 { color: #ff3333; font-size: 1.4rem; display: flex; align-items: center; gap: 8px; }
+        .details-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 15px; }
+        .detail-item { background: #1f1f1f; padding: 12px; border-radius: 8px; text-align: center; border-left: 4px solid #ff3333; }
+        .detail-item span { display: block; font-size: 0.85rem; color: #aaa; }
+        .detail-item strong { font-size: 1.1rem; color: #fff; }
+
+        /* Registration Form Styling */
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; color: #00ff66; font-weight: bold; margin-bottom: 5px; }
+        .form-group input { width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: #fff; border-radius: 6px; font-size: 1rem; }
+        .form-group input:focus { border-color: #ff3333; outline: none; }
+        .submit-btn { width: 100%; padding: 14px; background: linear-gradient(90deg, #ff0000, #ff6600); color: #fff; font-weight: bold; font-size: 1.1rem; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 0 15px rgba(255, 0, 0, 0.6); margin-top: 10px; text-transform: uppercase; }
+
+        /* Floating Button */
+        .float-wa { position: fixed; bottom: 20px; right: 20px; background-color: #25d366; color: #fff; border-radius: 50px; text-align: center; font-size: 18px; box-shadow: 2px 2px 10px rgba(0,0,0,0.5); z-index: 100; padding: 12px 18px; text-decoration: none; font-weight: bold; }
+
+        /* Footer Section Styling */
+        footer { margin-top: 40px; text-align: center; padding: 25px 15px; background: #0d0d0d; border-top: 2px solid #ff3333; }
+        .footer-logo { width: 180px; height: auto; border-radius: 10px; margin-bottom: 15px; }
+        .footer-text { color: #ffffff; font-size: 1.1rem; font-weight: bold; margin-bottom: 8px; }
+        .footer-insta { color: #00ff66; font-size: 1.05rem; font-weight: bold; text-decoration: none; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <img id="displayPoster" src="" alt="Tournament Poster">
-        <h1 id="displayName">Loading...</h1>
-        <p><strong>Entry Fee:</strong> <span id="displayFee">-</span></p>
-        <p><strong>Prize Pool:</strong> <span id="displayPrize">-</span></p>
+
+    <header>
+        <div class="logo-container">
+            <img src="1784526675116.png" alt="Xyclone777 Esports Logo">
+        </div>
+        <h1 id="liveTournamentTitle">XYCLONE⁷⁷⁷ ESPORTS</h1>
+        <p class="subtitle">THE ULTIMATE SHOWDOWN</p>
+    </header>
+
+    <div class="hero-banner">
+        <img src="IMG_20260810_040025.png" alt="BG Official Banner">
     </div>
+
+    <!-- Official WhatsApp Group Link Button -->
+    <div class="join-card">
+        <a href="https://chat.whatsapp.com/IAUQosDCNWtAdUUT2FkXhL" target="_blank" class="group-btn">
+            💬 JOIN XYCLONE⁷⁷⁷ ESPORTS WHATSAPP GROUP
+        </a>
+    </div>
+
+    <div class="main-container">
+
+        <!-- Match Overview Section -->
+        <div class="card">
+            <img id="liveMatchImg" src="IMG_20260814_193406.png" alt="Match Details Poster" class="card-header-img">
+            <div class="section-header">
+                <h2>🏆 Match Overview</h2>
+            </div>
+            <div class="details-grid">
+                <div class="detail-item">
+                    <span>Entry Fee</span>
+                    <strong id="liveFee">₹30 Solo / ₹50 Duo</strong>
+                </div>
+                <div class="detail-item">
+                    <span>1st Prize</span>
+                    <strong id="livePrize1">₹ 199 🏆</strong>
+                </div>
+                <div class="detail-item">
+                    <span>2nd Prize</span>
+                    <strong id="livePrize2">₹ 120 🏆</strong>
+                </div>
+                <div class="detail-item">
+                    <span>Mode & Map</span>
+                    <strong id="liveMode">Duo / Bermuda</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Official Tournament Rules Section -->
+        <div class="card">
+            <img id="liveRulesImg" src="1784525629128.png" alt="Rules Poster" class="card-header-img">
+            <div class="section-header">
+                <h2>📜 Official Tournament Rules</h2>
+            </div>
+            <p id="liveRulesText" style="color: #ccc; margin-top: 10px; white-space: pre-line;">
+                • Weapons Allowed: M1887 & Desert Eagle Only
+                • Combat Rule: Only Headshot Kills Counted
+                • Play Style: No Double Shot & No Spraying
+                • Character Skills: Disabled (Not Allowed)
+                • Match Mechanics: No Revival & No Team-Up
+                • ⚠️ FIRST PAY, THEN PLAY!
+            </p>
+        </div>
+
+        <!-- Registration Form Section -->
+        <div class="card">
+            <div class="section-header" style="border-bottom: none;">
+                <h2>📝 Tournament Registration</h2>
+            </div>
+            <form onsubmit="sendToWhatsapp(event)">
+                <div class="form-group">
+                    <label>Free Fire IGN (In-Game Name):</label>
+                    <input type="text" id="ign" placeholder="Ex: _XYCLONE777" required>
+                </div>
+                <div class="form-group">
+                    <label>Free Fire UID:</label>
+                    <input type="text" id="uid" placeholder="Ex: 1234567890" required>
+                </div>
+                <div class="form-group">
+                    <label>WhatsApp Number:</label>
+                    <input type="text" id="phone" placeholder="Ex: 8951630221" required>
+                </div>
+                <div class="form-group">
+                    <label>Transaction UTR / Reference No (Paid match ge):</label>
+                    <input type="text" id="utr" placeholder="Enter UPI Transaction ID" required>
+                </div>
+                <button type="submit" class="submit-btn">REGISTER VIA WHATSAPP 🚀</button>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- Floating WhatsApp Group Button -->
+    <a href="https://chat.whatsapp.com/IAUQosDCNWtAdUUT2FkXhL" class="float-wa" target="_blank">
+        💬 Group
+    </a>
+
+    <!-- Footer Section -->
+    <footer>
+        <img src="1770342644339.jpg" alt="BG Official Logo" class="footer-logo">
+        <div class="footer-text">Managed & Designed by BG OFFICIAL</div>
+        <div>Instagram: <a href="https://instagram.com/mr_bhavith_gowda_445" class="footer-insta" target="_blank">@mr_bhavith_gowda_445</a></div>
+    </footer>
 
     <script>
         const BIN_ID = "6aae4278ffd5d1605318a997";
         const API_KEY = "$2a$10$ltW6u9G6gqZAFPD5m74pF.W4mX9CuMoVQrFwXDxyM16ddtGtXU6ZG";
 
-        async function fetchData() {
+        async function fetchLiveDatabase() {
             try {
                 let res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
                     headers: { "X-Master-Key": API_KEY }
                 });
                 let data = await res.json();
-                document.getElementById("displayName").innerText = data.record.tournamentName;
-                document.getElementById("displayFee").innerText = data.record.entryFee;
-                document.getElementById("displayPrize").innerText = data.record.prizePool;
-                if(data.record.poster) {
-                    document.getElementById("displayPoster").src = data.record.poster;
-                }
+                let record = data.record;
+
+                if(record.tournamentName) document.getElementById('liveTournamentTitle').innerText = record.tournamentName;
+                if(record.entryFee) document.getElementById('liveFee').innerText = record.entryFee;
+                if(record.prizePool) document.getElementById('livePrize1').innerText = record.prizePool;
+                if(record.poster) document.getElementById('liveMatchImg').src = record.poster;
             } catch (e) {
-                console.log("Error loading data", e);
+                console.log("Live Database fetch error:", e);
             }
         }
 
-        fetchData();
+        window.onload = fetchLiveDatabase;
+
+        function sendToWhatsapp(event) {
+            event.preventDefault();
+            let ign = document.getElementById('ign').value;
+            let uid = document.getElementById('uid').value;
+            let phone = document.getElementById('phone').value;
+            let utr = document.getElementById('utr').value;
+
+            let message = `🎮 *XYCLONE ESPORTS REGISTRATION* 🎮%0A%0A*Free Fire IGN:* ${ign}%0A*Free Fire UID:* ${uid}%0A*WhatsApp Number:* ${phone}%0A*Payment UTR ID:* ${utr}`;
+            let whatsappUrl = `https://wa.me/918951630221?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        }
     </script>
 </body>
 </html>
