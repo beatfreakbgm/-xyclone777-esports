@@ -5,29 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - Xyclone Esports</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; background-color: #121212; color: #fff; }
-        .container { max-width: 500px; margin: auto; background: #1e1e1e; padding: 20px; border-radius: 8px; }
-        input, button { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none; box-sizing: border-box; }
-        button { background-color: #ff4757; color: white; font-weight: bold; cursor: pointer; }
-        button:hover { background-color: #e84118; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #0d0d0d; color: #ffffff; padding: 20px; line-height: 1.6; }
+        .container { max-width: 600px; margin: 0 auto; background: #141414; border: 1px solid #ff3333; border-radius: 12px; padding: 25px; box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); }
+        h2 { color: #ff3333; text-align: center; margin-bottom: 20px; text-transform: uppercase; border-bottom: 2px solid #00ff66; padding-bottom: 10px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; color: #00ff66; font-weight: bold; margin-bottom: 5px; font-size: 0.95rem; }
+        input, textarea { width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: #fff; border-radius: 6px; font-size: 0.95rem; }
+        input:focus, textarea:focus { border-color: #ff3333; outline: none; }
+        textarea { resize: vertical; height: 120px; }
+        button { width: 100%; padding: 14px; background: linear-gradient(90deg, #ff0000, #ff6600); color: #fff; font-weight: bold; font-size: 1.1rem; border: none; border-radius: 8px; cursor: pointer; text-transform: uppercase; box-shadow: 0 0 15px rgba(255, 0, 0, 0.6); margin-top: 10px; }
+        #status { text-align: center; margin-top: 15px; font-weight: bold; font-size: 1.05rem; }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <h2>Xyclone Esports - Admin Panel</h2>
-        <label>Tournament Name:</label>
-        <input type="text" id="tName">
+        <h2>XYCLONE ESPORTS - ADMIN CONTROL</h2>
         
-        <label>Entry Fee:</label>
-        <input type="text" id="fee">
-        
-        <label>Prize Pool:</label>
-        <input type="text" id="prize">
-        
-        <label>Poster Image Name (e.g. 1770342644339.jpg):</label>
-        <input type="text" id="poster">
-        
-        <button onclick="updateData()">Save & Update Globally</button>
+        <div class="form-group">
+            <label>Tournament Title:</label>
+            <input type="text" id="tTitle" placeholder="Ex: XYCLONE777 ESPORTS">
+        </div>
+
+        <div class="form-group">
+            <label>Match Overview Poster (Image File Name):</label>
+            <input type="text" id="matchImg" placeholder="Ex: IMG_20260814_193406.png">
+        </div>
+
+        <div class="form-group">
+            <label>Entry Fee Text:</label>
+            <input type="text" id="fee" placeholder="Ex: ₹30 Solo / ₹50 Duo">
+        </div>
+
+        <div class="form-group">
+            <label>1st Prize Text:</label>
+            <input type="text" id="prize1" placeholder="Ex: ₹ 199 🏆">
+        </div>
+
+        <div class="form-group">
+            <label>2nd Prize Text:</label>
+            <input type="text" id="prize2" placeholder="Ex: ₹ 120 🏆">
+        </div>
+
+        <div class="form-group">
+            <label>Mode & Map Text:</label>
+            <input type="text" id="mode" placeholder="Ex: Duo / Bermuda">
+        </div>
+
+        <div class="form-group">
+            <label>Rules Poster (Image File Name):</label>
+            <input type="text" id="rulesImg" placeholder="Ex: 1784525629128.png">
+        </div>
+
+        <div class="form-group">
+            <label>Official Tournament Rules (Text):</label>
+            <textarea id="rulesText" placeholder="Enter tournament rules here..."></textarea>
+        </div>
+
+        <button onclick="updateData()">SAVE & UPDATE LIVE WEBSITE 🚀</button>
         <p id="status"></p>
     </div>
 
@@ -35,47 +71,67 @@
         const BIN_ID = "6aae4278ffd5d1605318a997";
         const API_KEY = "$2a$10$ltW6u9G6gqZAFPD5m74pF.W4mX9CuMoVQrFwXDxyM16ddtGtXU6ZG";
 
-        async function loadData() {
+        async function loadCurrentData() {
             try {
                 let res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
                     headers: { "X-Master-Key": API_KEY }
                 });
                 let data = await res.json();
-                document.getElementById("tName").value = data.record.tournamentName || "";
-                document.getElementById("fee").value = data.record.entryFee || "";
-                document.getElementById("prize").value = data.record.prizePool || "";
-                document.getElementById("poster").value = data.record.poster || "";
+                let rec = data.record;
+
+                document.getElementById("tTitle").value = rec.tournamentName || "XYCLONE⁷⁷⁷ ESPORTS";
+                document.getElementById("matchImg").value = rec.poster || "IMG_20260814_193406.png";
+                document.getElementById("fee").value = rec.entryFee || "₹30 Solo / ₹50 Duo";
+                document.getElementById("prize1").value = rec.prize1 || "₹ 199 🏆";
+                document.getElementById("prize2").value = rec.prize2 || "₹ 120 🏆";
+                document.getElementById("mode").value = rec.mode || "Duo / Bermuda";
+                document.getElementById("rulesImg").value = rec.rulesImg || "1784525629128.png";
+                document.getElementById("rulesText").value = rec.rulesText || "• Weapons Allowed: M1887 & Desert Eagle Only\n• Combat Rule: Only Headshot Kills Counted\n• Play Style: No Double Shot & No Spraying\n• Character Skills: Disabled (Not Allowed)\n• Match Mechanics: No Revival & No Team-Up\n• ⚠️ FIRST PAY, THEN PLAY!";
             } catch (e) {
-                console.log("Error loading data", e);
+                console.log("Error loading current data", e);
             }
         }
 
         async function updateData() {
-            document.getElementById("status").innerText = "Saving...";
+            let status = document.getElementById("status");
+            status.style.color = "#00ff66";
+            status.innerText = "Saving changes to database...";
+
             let updatedData = {
-                tournamentName: document.getElementById("tName").value,
+                tournamentName: document.getElementById("tTitle").value,
+                poster: document.getElementById("matchImg").value,
                 entryFee: document.getElementById("fee").value,
-                prizePool: document.getElementById("prize").value,
-                poster: document.getElementById("poster").value
+                prize1: document.getElementById("prize1").value,
+                prize2: document.getElementById("prize2").value,
+                mode: document.getElementById("mode").value,
+                rulesImg: document.getElementById("rulesImg").value,
+                rulesText: document.getElementById("rulesText").value
             };
 
-            let res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-Master-Key": API_KEY
-                },
-                body: JSON.stringify(updatedData)
-            });
+            try {
+                let res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-Master-Key": API_KEY
+                    },
+                    body: JSON.stringify(updatedData)
+                });
 
-            if (res.ok) {
-                document.getElementById("status").innerText = "Updated Successfully!";
-            } else {
-                document.getElementById("status").innerText = "Error updating data!";
+                if (res.ok) {
+                    status.style.color = "#00ff66";
+                    status.innerText = "✅ Updated Successfully! Check your live website.";
+                } else {
+                    status.style.color = "#ff3333";
+                    status.innerText = "❌ Error updating data!";
+                }
+            } catch (e) {
+                status.style.color = "#ff3333";
+                status.innerText = "❌ Network Error!";
             }
         }
 
-        loadData();
+        window.onload = loadCurrentData;
     </script>
 </body>
 </html>
