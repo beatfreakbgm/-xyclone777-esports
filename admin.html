@@ -17,6 +17,18 @@
         .card { background: #141414; border: 1px solid #ff3333; border-radius: 12px; padding: 20px; box-shadow: 0 4px 15px rgba(255,0,0,0.2); position: relative; }
         .card-header-img { width: 100%; border-radius: 8px; margin-bottom: 15px; border: 1px solid #ff3333; }
         
+        /* Analytics Card Style for Owner */
+        .analytics-card {
+            background: #181818;
+            border: 2px solid #00ff66;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.3);
+        }
+        .analytics-card h3 { color: #aaa; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .analytics-card .count-val { color: #00ff66; font-size: 2.2rem; font-weight: bold; font-family: monospace; }
+
         .section-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #00ff66; padding-bottom: 8px; margin-bottom: 15px; }
         .section-header h2 { color: #ff3333; font-size: 1.4rem; display: flex; align-items: center; gap: 8px; }
         .edit-btn { background: #ff3333; color: white; border: none; padding: 8px 16px; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 0.9rem; box-shadow: 0 0 10px rgba(255,51,51,0.6); }
@@ -26,14 +38,12 @@
         .detail-item span { display: block; font-size: 0.85rem; color: #aaa; }
         .detail-item strong { font-size: 1.1rem; color: #fff; }
 
-        /* Registration Form Styling */
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; color: #00ff66; font-weight: bold; margin-bottom: 5px; }
         .form-group input { width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: #fff; border-radius: 6px; font-size: 1rem; }
         .form-group input:focus { border-color: #ff3333; outline: none; }
         .submit-btn { width: 100%; padding: 14px; background: linear-gradient(90deg, #ff0000, #ff6600); color: #fff; font-weight: bold; font-size: 1.1rem; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 0 15px rgba(255, 0, 0, 0.6); margin-top: 10px; text-transform: uppercase; }
 
-        /* Footer Section Styling */
         footer { margin-top: 40px; text-align: center; padding: 25px 15px; background: #0d0d0d; border-top: 2px solid #ff3333; }
         .footer-logo { width: 180px; height: auto; border-radius: 10px; margin-bottom: 15px; }
         .footer-text { color: #ffffff; font-size: 1.1rem; font-weight: bold; margin-bottom: 8px; }
@@ -66,6 +76,12 @@
 
     <div class="main-container">
 
+        <!-- Live Visitor Analytics Box (For Owner Only) -->
+        <div class="analytics-card">
+            <h3>👁️ Total Website Visitors</h3>
+            <div class="count-val" id="adminVisitorCount">Loading...</div>
+        </div>
+
         <!-- Match Overview Section -->
         <div class="card">
             <img id="matchImg" src="IMG_20260814_193406.png" alt="Match Details Poster" class="card-header-img">
@@ -76,19 +92,19 @@
             <div class="details-grid">
                 <div class="detail-item">
                     <span>Entry Fee</span>
-                    <strong id="feeTxt">₹30 Solo / ₹50 Duo</strong>
+                    <strong id="feeTxt">Loading...</strong>
                 </div>
                 <div class="detail-item">
                     <span>1st Prize</span>
-                    <strong id="prize1Txt">₹ 199 🏆</strong>
+                    <strong id="prize1Txt">Loading...</strong>
                 </div>
                 <div class="detail-item">
                     <span>2nd Prize</span>
-                    <strong id="prize2Txt">₹ 120 🏆</strong>
+                    <strong id="prize2Txt">Loading...</strong>
                 </div>
                 <div class="detail-item">
                     <span>Mode & Map</span>
-                    <strong id="modeTxt">Duo / Bermuda</strong>
+                    <strong id="modeTxt">Loading...</strong>
                 </div>
             </div>
         </div>
@@ -101,37 +117,32 @@
                 <button class="edit-btn" onclick="openRulesModal()">Edit ✏️</button>
             </div>
             <p id="rulesTxt" style="color: #ccc; margin-top: 10px; white-space: pre-line;">
-                • Weapons Allowed: M1887 & Desert Eagle Only
-                • Combat Rule: Only Headshot Kills Counted
-                • Play Style: No Double Shot & No Spraying
-                • Character Skills: Disabled (Not Allowed)
-                • Match Mechanics: No Revival & No Team-Up
-                • ⚠️ FIRST PAY, THEN PLAY!
+                Loading Rules...
             </p>
         </div>
 
-        <!-- Registration Form Section -->
+        <!-- Registration Preview -->
         <div class="card">
             <div class="section-header" style="border-bottom: none;">
                 <h2>📝 Tournament Registration</h2>
             </div>
             <div class="form-group">
                 <label>Free Fire IGN (In-Game Name):</label>
-                <input type="text" placeholder="Ex: _XYCLONE777">
+                <input type="text" placeholder="Ex: _XYCLONE777" disabled>
             </div>
             <div class="form-group">
                 <label>Free Fire UID:</label>
-                <input type="text" placeholder="Ex: 1234567890">
+                <input type="text" placeholder="Ex: 1234567890" disabled>
             </div>
             <div class="form-group">
                 <label>WhatsApp Number:</label>
-                <input type="text" placeholder="Ex: 8951630221">
+                <input type="text" placeholder="Ex: 8951630221" disabled>
             </div>
             <div class="form-group">
                 <label>Transaction UTR / Reference No (Paid match ge):</label>
-                <input type="text" placeholder="Enter UPI Transaction ID">
+                <input type="text" placeholder="Enter UPI Transaction ID" disabled>
             </div>
-            <button class="submit-btn">REGISTER VIA WHATSAPP 🚀</button>
+            <button class="submit-btn" style="opacity: 0.6; cursor: not-allowed;">REGISTER VIA WHATSAPP 🚀</button>
         </div>
 
     </div>
@@ -204,7 +215,20 @@
             }
         }
 
-        window.onload = fetchLiveDatabase;
+        async function fetchVisitorCount() {
+            try {
+                let res = await fetch("https://api.countapi.xyz/get/xyclone777-esports/visits");
+                let data = await res.json();
+                document.getElementById('adminVisitorCount').innerText = data.value || "0";
+            } catch (e) {
+                document.getElementById('adminVisitorCount').innerText = "0";
+            }
+        }
+
+        window.onload = function() {
+            fetchLiveDatabase();
+            fetchVisitorCount();
+        };
 
         function openMatchModal() {
             document.getElementById('inMatchImg').value = document.getElementById('matchImg').getAttribute('src');
